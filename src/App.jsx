@@ -1,10 +1,10 @@
 import { SiEsotericsoftware } from "react-icons/si";
 import "./App.css";
-import { IoIosCode, IoMdCheckmarkCircleOutline } from "react-icons/io";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import softwareEnginer from "./images/Engenharia de Software Futurista.png";
-import { IoCode } from "react-icons/io5";
-import { FaRegLightbulb } from "react-icons/fa";
-import { MdLightbulbOutline } from "react-icons/md";
+import { IoCloseSharp, IoCode } from "react-icons/io5";
+import { FaBars, FaBrain, FaChartLine, FaTools } from "react-icons/fa";
+import { MdLightbulbOutline, MdOutlinePlayCircle } from "react-icons/md";
 import { AiOutlineTeam, AiOutlineThunderbolt } from "react-icons/ai";
 import { LuDatabase } from "react-icons/lu";
 import { FiSmartphone, FiTarget } from "react-icons/fi";
@@ -15,10 +15,9 @@ import { GoMortarBoard } from "react-icons/go";
 import { useEffect, useState } from "react";
 import ScrollReveal from "scrollreveal";
 function App() {
+  const [scrolled, setScrolled] = useState(false);
 
-const [scrolled, setScrolled] = useState(false);
-
-useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 500); // quando rolar a página, muda o estado
     };
@@ -31,90 +30,105 @@ useEffect(() => {
   useEffect(() => {
     const sr = ScrollReveal();
 
-    sr.reveal('.textReveal', {
+    sr.reveal(".textReveal", {
       duration: 2000,
-      distance: '50px',
-      origin: 'left',
-      easing: 'ease',
+      distance: "50px",
+      origin: "left",
+      easing: "ease",
       interval: 300,
       reset: false,
     });
 
-    sr.reveal('.listReveal', {
+    sr.reveal(".listReveal", {
       duration: 2000,
-      distance: '50px',
-      origin: 'left',
-      easing: 'ease',
+      distance: "50px",
+      origin: "left",
+      easing: "ease",
       interval: 400,
       reset: false,
     });
 
-    sr.reveal('.imageReveal', {
+    sr.reveal(".imageReveal", {
       duration: 2000,
-      distance: '50px',
-      origin: 'right',
-      easing: 'ease',
+      distance: "50px",
+      origin: "right",
+      easing: "ease",
       interval: 400,
       reset: false,
     });
 
-    sr.reveal('.titleReveal', {
+    sr.reveal(".titleReveal", {
       duration: 2000,
-      distance: '50px',
-      origin: 'bottom',
-      easing: 'ease',
+      distance: "50px",
+      origin: "bottom",
+      easing: "ease",
       interval: 400,
       reset: false,
     });
 
-    sr.reveal('.cardReveal', {
+    sr.reveal(".cardReveal", {
       duration: 2000,
-      distance: '50px',
-      origin: 'bottom',
-      easing: 'ease',
+      distance: "50px",
+      origin: "bottom",
+      easing: "ease",
       interval: 300,
       reset: false,
     });
 
-    sr.reveal('.tableOne', {
+    sr.reveal(".tableOne", {
       duration: 2000,
-      distance: '50px',
-      origin: 'left',
-      easing: 'ease',
+      distance: "50px",
+      origin: "left",
+      easing: "ease",
       interval: 400,
       reset: false,
+      delay: 200,
     });
 
-     sr.reveal('.tableTwo', {
+    sr.reveal(".tableTwo", {
       duration: 2000,
-      distance: '50px',
-      origin: 'right',
-      easing: 'ease',
+      distance: "50px",
+      origin: "right",
+      easing: "ease",
       interval: 400,
       reset: false,
+      delay: 200,
     });
 
-      sr.reveal('.ferramentaReveal', {
+    sr.reveal(".ferramentaReveal", {
       duration: 2000,
-      distance: '50px',
-      origin: 'left',
-      easing: 'ease',
+      distance: "50px",
+      origin: "left",
+      easing: "ease",
       interval: 300,
       reset: false,
     });
 
-      sr.reveal('.finalReveal', {
+    sr.reveal(".finalReveal", {
       duration: 2000,
-      distance: '50px',
-      scale: '0.9',
-      opacity: '0',
-      easing: 'ease',
+      distance: "50px",
+      scale: "0.9",
+      opacity: "0",
+      easing: "ease",
       interval: 300,
       reset: false,
     });
-
   }, []);
 
+  const [menuLateral, setMenuLateral] = useState(false);
+  const [fechandoMenu, setFechandoMenu] = useState(false);
+
+  const abrirMenu = () => {
+    setMenuLateral(true);
+    setFechandoMenu(false);
+  };
+
+  const fecharMenu = () => {
+    setFechandoMenu(true);
+    setTimeout(() => {
+      setMenuLateral(false);
+    }, 500); // espera a animação de fechamento
+  };
 
   return (
     <>
@@ -129,6 +143,41 @@ useEffect(() => {
           <a href="#oportunitys">Oportunidades</a>
           <a href="#ferramentas">Ferramentas</a>
         </nav>
+        <div className="bars">
+          <FaBars onClick={abrirMenu} />
+        </div>
+
+        {menuLateral && (
+  <div className="overlayMenu" onClick={fecharMenu}>
+    <div
+      className={`menuLateral ${fechandoMenu ? 'menuLateralClose' : ''}`}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="border"></div>
+      <div className="head">
+        <span className="title">
+          <SiEsotericsoftware className="simble" />
+        </span>
+        <IoCloseSharp onClick={fecharMenu} />
+      </div>
+      <nav className="navLateral">
+        <a href="#hero" onClick={fecharMenu} className="linkLateral">
+          <MdOutlinePlayCircle /> Introdução
+        </a>
+        <a href="#skills" onClick={fecharMenu} className="linkLateral">
+          <FaBrain /> Habilidades
+        </a>
+        <a href="#oportunitys" onClick={fecharMenu} className="linkLateral">
+          <FaChartLine /> Oportunidades
+        </a>
+        <a href="#ferramentas" onClick={fecharMenu} className="linkLateral">
+          <FaTools /> Ferramentas
+        </a>
+      </nav>
+    </div>
+  </div>
+)}
+
       </header>
       <section className="hero" id="hero">
         <div className="content">
@@ -307,80 +356,93 @@ useEffect(() => {
       </section>
 
       <section className="ferramentasCont" id="ferramentas">
-          <div className="sectionTitle titleReveal">
-            <h1>Ferramentas e Tecnologias</h1>
-            <p>Conheça as principais ferramentas e tecnologias utilizadas por engenheiros de software no mercado atual.</p>
-          </div>
+        <div className="sectionTitle titleReveal">
+          <h1>Ferramentas e Tecnologias</h1>
+          <p>
+            Conheça as principais ferramentas e tecnologias utilizadas por
+            engenheiros de software no mercado atual.
+          </p>
+        </div>
 
-          <div className="gridFerramentas">
-            <div className="cardFerramenta ferramentaReveal">
-              <h3>Linguagens</h3>
-              <div className="spans">
-                <span>JavaScript</span>
-                <span>Python</span>
-                <span>Java</span>
-                <span>TypeScript</span>
-                <span>Go</span>
-                <span>C#</span>
-              </div>
-            </div>
-            <div className="cardFerramenta ferramentaReveal">
-              <h3>FrameWorks</h3>
-              <div className="spans">
-                <span>React</span>
-                <span>Next.js</span>
-                <span>Vue.js</span>
-                <span>Angular</span>
-                <span>Django</span>
-                <span>Spring</span>
-              </div>
-            </div>
-             <div className="cardFerramenta ferramentaReveal">
-              <h3>Banco de dados</h3>
-              <div className="spans">
-                <span>PostgreSQL</span>
-                <span>MySQL</span>
-                <span>MongoDB</span>
-                <span>Redis</span>
-                <span>SQLite</span>
-                <span>Firebase</span>
-              </div>
-            </div>
-             <div className="cardFerramenta ferramentaReveal">
-              <h3>DevOps & Cloud</h3>
-              <div className="spans">
-                <span>Docker</span>
-                <span>AWS</span>
-                <span>Git</span>
-                <span>Kubernetes</span>
-                <span>Azure</span>
-                <span>Vercel</span>
-              </div>
+        <div className="gridFerramentas">
+          <div className="cardFerramenta ferramentaReveal">
+            <h3>Linguagens</h3>
+            <div className="spans">
+              <span>JavaScript</span>
+              <span>Python</span>
+              <span>Java</span>
+              <span>TypeScript</span>
+              <span>Go</span>
+              <span>C#</span>
             </div>
           </div>
+          <div className="cardFerramenta ferramentaReveal">
+            <h3>FrameWorks</h3>
+            <div className="spans">
+              <span>React</span>
+              <span>Next.js</span>
+              <span>Vue.js</span>
+              <span>Angular</span>
+              <span>Django</span>
+              <span>Spring</span>
+            </div>
+          </div>
+          <div className="cardFerramenta ferramentaReveal">
+            <h3>Banco de dados</h3>
+            <div className="spans">
+              <span>PostgreSQL</span>
+              <span>MySQL</span>
+              <span>MongoDB</span>
+              <span>Redis</span>
+              <span>SQLite</span>
+              <span>Firebase</span>
+            </div>
+          </div>
+          <div className="cardFerramenta ferramentaReveal">
+            <h3>DevOps & Cloud</h3>
+            <div className="spans">
+              <span>Docker</span>
+              <span>AWS</span>
+              <span>Git</span>
+              <span>Kubernetes</span>
+              <span>Azure</span>
+              <span>Vercel</span>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section className="final">
         <div className="container finalReveal">
           <h1>Se interessou por está área?</h1>
 
-          <p>A engenharia de software oferece um futuro promissor com oportunidades ilimitadas. Comece sua jornada hoje mesmo!</p>
+          <p>
+            A engenharia de software oferece um futuro promissor com
+            oportunidades ilimitadas. Comece sua jornada hoje mesmo!
+          </p>
 
           <div className="buttons">
-          <button className="vagas"><RiSuitcaseFill /> Ver vagas</button>
-          <button className="university"><GoMortarBoard /> Universidades Recomendadas </button>
+            <a href="https://www.google.com/search?q=vagas+engenheiro+de+software&oq=Vagas+Eng&gs_lcrp=EgZjaHJvbWUqBwgJEAAYgAQyBggAEEUYOTIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIHCAkQABiABNIBCDkwMTlqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8&jbr=sep:0" className="vagas button">
+              <RiSuitcaseFill /> Ver vagas
+            </a>
+            <button className="university">
+              <GoMortarBoard /> Universidades Recomendadas{" "}
+            </button>
           </div>
         </div>
       </section>
 
       <footer>
         <div className="logo">
-            <SiEsotericsoftware color="#5b21b6"/>
-            <h1>Engenharia de Software</h1>
+          <SiEsotericsoftware color="#5b21b6" />
+          <h1>Engenharia de Software</h1>
         </div>
         <div className="text">
           <p>Transformando ideias em soluções tecnológicas inovadoras</p>
-          <span>&copy; 2025 Landing Page sobre Engenharia de Software. Todos os direitos reservados. Desenvolvido por Kauã Lima</span>
+          <span>
+            &copy; 2025 Landing Page sobre Engenharia de Software. Todos os
+            direitos reservados. Desenvolvido por Kauã Lima
+          </span>
         </div>
       </footer>
     </>
