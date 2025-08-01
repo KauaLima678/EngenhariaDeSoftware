@@ -77,19 +77,27 @@ html{
   --error: var(--red-600);
 }
 
+header.scrolled {
+  background-color: rgba(255, 255, 255, 0.7); /* pode ajustar */
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
 header {
   z-index: 999;
   padding: 1.8em 3em;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   position: fixed;
   width: 100%;
   span {
     display: flex;
     gap: 20px;
     align-items: center;
+    transition: 0.5s;
 
     svg {
       font-size: 30px;
@@ -507,5 +515,29 @@ footer{
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  gap: 20px;
   padding: 50px;
+
+  .logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    svg{
+      font-size: 30px;
+    }
+  }
+
+  .text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-direction: column; 
+    
+    span{
+      color: var(--gray-600);
+    }
+  }
 }

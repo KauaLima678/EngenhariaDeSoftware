@@ -12,22 +12,125 @@ import { FaArrowTrendUp } from "react-icons/fa6";
 import { TbWorld } from "react-icons/tb";
 import { RiSuitcaseFill } from "react-icons/ri";
 import { GoMortarBoard } from "react-icons/go";
+import { useEffect, useState } from "react";
+import ScrollReveal from "scrollreveal";
 function App() {
+
+const [scrolled, setScrolled] = useState(false);
+
+useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 500); // quando rolar a página, muda o estado
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll); // cleanup
+  }, []);
+
+  useEffect(() => {
+    const sr = ScrollReveal();
+
+    sr.reveal('.textReveal', {
+      duration: 2000,
+      distance: '50px',
+      origin: 'left',
+      easing: 'ease',
+      interval: 300,
+      reset: false,
+    });
+
+    sr.reveal('.listReveal', {
+      duration: 2000,
+      distance: '50px',
+      origin: 'left',
+      easing: 'ease',
+      interval: 400,
+      reset: false,
+    });
+
+    sr.reveal('.imageReveal', {
+      duration: 2000,
+      distance: '50px',
+      origin: 'right',
+      easing: 'ease',
+      interval: 400,
+      reset: false,
+    });
+
+    sr.reveal('.titleReveal', {
+      duration: 2000,
+      distance: '50px',
+      origin: 'bottom',
+      easing: 'ease',
+      interval: 400,
+      reset: false,
+    });
+
+    sr.reveal('.cardReveal', {
+      duration: 2000,
+      distance: '50px',
+      origin: 'bottom',
+      easing: 'ease',
+      interval: 300,
+      reset: false,
+    });
+
+    sr.reveal('.tableOne', {
+      duration: 2000,
+      distance: '50px',
+      origin: 'left',
+      easing: 'ease',
+      interval: 400,
+      reset: false,
+    });
+
+     sr.reveal('.tableTwo', {
+      duration: 2000,
+      distance: '50px',
+      origin: 'right',
+      easing: 'ease',
+      interval: 400,
+      reset: false,
+    });
+
+      sr.reveal('.ferramentaReveal', {
+      duration: 2000,
+      distance: '50px',
+      origin: 'left',
+      easing: 'ease',
+      interval: 300,
+      reset: false,
+    });
+
+      sr.reveal('.finalReveal', {
+      duration: 2000,
+      distance: '50px',
+      scale: '0.9',
+      opacity: '0',
+      easing: 'ease',
+      interval: 300,
+      reset: false,
+    });
+
+  }, []);
+
+
   return (
     <>
-      <header>
+      <header className={scrolled ? "scrolled" : ""}>
         <span className="title">
           <SiEsotericsoftware />
           <p>Engenharia de Software</p>
         </span>
         <nav>
-          <a href="">Introdução</a>
-          <a href="">Habilidades</a>
-          <a href="">Oportunidades</a>
-          <a href="">Ferramentas</a>
+          <a href="#hero">Introdução</a>
+          <a href="#skills">Habilidades</a>
+          <a href="#oportunitys">Oportunidades</a>
+          <a href="#ferramentas">Ferramentas</a>
         </nav>
       </header>
-      <section className="hero">
+      <section className="hero" id="hero">
         <div className="content">
           <h1>Engenharia de Software</h1>
           <p>
@@ -40,7 +143,7 @@ function App() {
 
       <section className="EngSoft">
         <div className="infoCont">
-          <div className="text">
+          <div className="text textReveal">
             <h1>O que é Engenharia de Software?</h1>
             <p>
               A Engenharia de Software é uma disciplina que aplica princípios de
@@ -50,21 +153,21 @@ function App() {
             </p>
           </div>
           <div className="list">
-            <div className="listitem">
+            <div className="listitem listReveal">
               <IoMdCheckmarkCircleOutline />
               <div className="listitemtext">
                 <h3>Desenvolvimento de Sistemas</h3>
                 <p>Criação de aplicações web, mobile e desktop</p>
               </div>
             </div>
-            <div className="listitem">
+            <div className="listitem listReveal">
               <IoMdCheckmarkCircleOutline />
               <div className="listitemtext">
                 <h3>Arquitetura de Software</h3>
                 <p>Design de soluções escaláveis e eficientes</p>
               </div>
             </div>
-            <div className="listitem">
+            <div className="listitem listReveal">
               <IoMdCheckmarkCircleOutline />
               <div className="listitemtext">
                 <h3>Resolução de Problemas</h3>
@@ -73,13 +176,13 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="image">
+        <div className="image imageReveal">
           <img src={softwareEnginer} alt="" />
         </div>
       </section>
 
-      <section className="skillsSection">
-        <div className="sectionTitle">
+      <section className="skillsSection" id="skills">
+        <div className="sectionTitle titleReveal">
           <h1>Habilidades necessárias</h1>
           <p>
             Para se tornar um engenheiro de software de sucesso, você precisa
@@ -88,14 +191,14 @@ function App() {
         </div>
 
         <div className="gridCard">
-          <div className="card">
+          <div className="card cardReveal">
             <IoCode color="var(--purple-600)" />
             <div className="textCard">
               <h1>Programação</h1>
               <p>Domínio de linguagens como Python, JavaScript, Java, C++</p>
             </div>
           </div>
-          <div className="card">
+          <div className="card cardReveal">
             <MdLightbulbOutline color="#c37b28" />
             <div className="textCard">
               <h1>Pensamento Lógico</h1>
@@ -104,28 +207,28 @@ function App() {
               </p>
             </div>
           </div>
-          <div className="card">
+          <div className="card cardReveal">
             <AiOutlineTeam color="#10b981" />
             <div className="textCard">
               <h1>Trabalho em Equipe</h1>
               <p>Colaboração efetiva em projetos multidisciplinares</p>
             </div>
           </div>
-          <div className="card">
+          <div className="card cardReveal">
             <LuDatabase color="#5b21b6" />
             <div className="textCard">
               <h1>Banco de dados</h1>
               <p>Conhecimento em SQL, NoSQL e modelagem de dados</p>
             </div>
           </div>
-          <div className="card">
+          <div className="card cardReveal">
             <AiOutlineThunderbolt color="#ea580c" />
             <div className="textCard">
               <h1>Adaptibilidade</h1>
               <p>Capacidade de aprender novas tecnologias rapidamente</p>
             </div>
           </div>
-          <div className="card">
+          <div className="card cardReveal">
             <FiTarget color="red" />
             <div className="textCard">
               <h1>Atenção aos Detalhes</h1>
@@ -135,8 +238,8 @@ function App() {
         </div>
       </section>
 
-      <section className="oportunity">
-        <div className="sectionTitle">
+      <section className="oportunity" id="oportunitys">
+        <div className="sectionTitle titleReveal">
           <h1>Oportunidades de Carreira</h1>
           <p>
             O mercado de engenharia de software oferece diversas oportunidades
@@ -145,7 +248,7 @@ function App() {
         </div>
 
         <div className="tablesCont">
-          <div className="atuacao">
+          <div className="atuacao tableOne">
             <h1>Áreas de Atuação</h1>
             <div className="cardAtuacao">
               <div className="item">
@@ -176,7 +279,7 @@ function App() {
             </div>
           </div>
           <div className="salario">
-            <div className="salarioCont">
+            <div className="salarioCont tableTwo">
               <h1>Pespectivas Salariais</h1>
               <div className="cardsSalario">
                 <div className="salarioCard">
@@ -203,14 +306,14 @@ function App() {
         </div>
       </section>
 
-      <section className="ferramentasCont">
-          <div className="sectionTitle">
+      <section className="ferramentasCont" id="ferramentas">
+          <div className="sectionTitle titleReveal">
             <h1>Ferramentas e Tecnologias</h1>
             <p>Conheça as principais ferramentas e tecnologias utilizadas por engenheiros de software no mercado atual.</p>
           </div>
 
           <div className="gridFerramentas">
-            <div className="cardFerramenta">
+            <div className="cardFerramenta ferramentaReveal">
               <h3>Linguagens</h3>
               <div className="spans">
                 <span>JavaScript</span>
@@ -221,7 +324,7 @@ function App() {
                 <span>C#</span>
               </div>
             </div>
-            <div className="cardFerramenta">
+            <div className="cardFerramenta ferramentaReveal">
               <h3>FrameWorks</h3>
               <div className="spans">
                 <span>React</span>
@@ -232,7 +335,7 @@ function App() {
                 <span>Spring</span>
               </div>
             </div>
-             <div className="cardFerramenta">
+             <div className="cardFerramenta ferramentaReveal">
               <h3>Banco de dados</h3>
               <div className="spans">
                 <span>PostgreSQL</span>
@@ -243,7 +346,7 @@ function App() {
                 <span>Firebase</span>
               </div>
             </div>
-             <div className="cardFerramenta">
+             <div className="cardFerramenta ferramentaReveal">
               <h3>DevOps & Cloud</h3>
               <div className="spans">
                 <span>Docker</span>
@@ -258,7 +361,7 @@ function App() {
       </section>
 
       <section className="final">
-        <div className="container">
+        <div className="container finalReveal">
           <h1>Se interessou por está área?</h1>
 
           <p>A engenharia de software oferece um futuro promissor com oportunidades ilimitadas. Comece sua jornada hoje mesmo!</p>
@@ -271,8 +374,14 @@ function App() {
       </section>
 
       <footer>
-        <h1>Engenharia de Software</h1>
-        <span>Todos os direitos reservados. Feito por kauã lima</span>
+        <div className="logo">
+            <SiEsotericsoftware color="#5b21b6"/>
+            <h1>Engenharia de Software</h1>
+        </div>
+        <div className="text">
+          <p>Transformando ideias em soluções tecnológicas inovadoras</p>
+          <span>&copy; 2025 Landing Page sobre Engenharia de Software. Todos os direitos reservados. Desenvolvido por Kauã Lima</span>
+        </div>
       </footer>
     </>
   );
